@@ -26,7 +26,6 @@ const IconController = () => {
         };
         setUpdateStorage(updatedValue);
         localStorage.setItem('value', JSON.stringify(updatedValue));
-        console.log(colorIcon);
     }, [size, rotate, color, icon, colorIcon]);
     return (
         <div>
