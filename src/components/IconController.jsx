@@ -12,7 +12,7 @@ const IconController = () => {
     const [rotate, setRotate] = useState(storageValue ? storageValue.iconRotate : 0);
     const [color, setColor] = useState(storageValue ? storageValue.iconColor : '#fff');
     const [icon, setIcon] = useState(storageValue ? storageValue.icon : 'BiHappy');
-    const [colorIcon, setColorIcon] = useState(storageValue ? storageValue.colorIconFc : false);
+    const [colorIcon, setColorIcon] = useState(storageValue?.colorIconFc || false);
     const { UpdateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
 
     useEffect(() => {

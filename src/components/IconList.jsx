@@ -13,7 +13,6 @@ const IconList = ({ selectedIcon, selectedColorIcon }) => {
     const [colorIcon, setColorIcon] = useState(storageValue ? storageValue.colorIconFc : false);
     const [openDialog, setOpenDialog] = useState(false);
 
-    console.log(storageValue.colorIconFc);
     const Icon = ({ name, color, size, rotate, colorIcon = false }) => {
         const iconLibrary = colorIcon ? FcIcons : BiIcons;
         const IconComponent = iconLibrary[name];
