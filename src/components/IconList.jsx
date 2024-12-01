@@ -2,15 +2,15 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { iconColorList } from '@/constants/iconColor';
 import { iconList } from '@/constants/icons';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as BiIcons from 'react-icons/bi';
 import * as FcIcons from 'react-icons/fc';
 
 const IconList = ({ selectedIcon, selectedColorIcon }) => {
     const storageValue = JSON.parse(localStorage.getItem('value'));
-    const [icon, setIcon] = useState(storageValue ? storageValue.icon : 'BiHappy');
+    const [icon, setIcon] = useState(storageValue?.icon || 'BiHappy');
 
-    const [colorIcon, setColorIcon] = useState(storageValue ? storageValue.colorIconFc : false);
+    const [colorIconFC, setColorIconFC] = useState(storageValue?.colorIconFc || false);
     const [openDialog, setOpenDialog] = useState(false);
 
     const Icon = ({ name, color, size, rotate, colorIcon = false }) => {
@@ -28,7 +28,7 @@ const IconList = ({ selectedIcon, selectedColorIcon }) => {
             <div onClick={() => setOpenDialog(true)}>
                 <label>Icon</label>
                 <div className="p-3 flex items-center justify-center cursor-pointer bg-gray-200 my-2 rounded-md w-[50px] h-[50px]">
-                    {colorIcon ? (
+                    {colorIconFC ? (
                         <Icon name={icon} colorIcon color={'#000'} size={20} />
                     ) : (
                         <Icon name={icon} color={'#000'} size={20} />
@@ -55,7 +55,7 @@ const IconList = ({ selectedIcon, selectedColorIcon }) => {
                                                     selectedIcon(icon);
                                                     setIcon(icon);
                                                     selectedColorIcon(false);
-                                                    setColorIcon(false);
+                                                    setColorIconFC(false);
                                                     setOpenDialog(false);
                                                 }}
                                             >
@@ -73,7 +73,7 @@ const IconList = ({ selectedIcon, selectedColorIcon }) => {
                                                 onClick={() => {
                                                     selectedIcon(icon);
                                                     setIcon(icon);
-                                                    setColorIcon(true);
+                                                    setColorIconFC(true);
                                                     selectedColorIcon(true);
                                                     setOpenDialog(false);
                                                 }}

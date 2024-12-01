@@ -8,10 +8,10 @@ import IconList from './IconList';
 const IconController = () => {
     const storageValue = JSON.parse(localStorage.getItem('value'));
 
-    const [size, setSize] = useState(storageValue ? storageValue.iconSize : 280);
-    const [rotate, setRotate] = useState(storageValue ? storageValue.iconRotate : 0);
-    const [color, setColor] = useState(storageValue ? storageValue.iconColor : '#fff');
-    const [icon, setIcon] = useState(storageValue ? storageValue.icon : 'BiHappy');
+    const [size, setSize] = useState(storageValue?.iconSize || 280);
+    const [rotate, setRotate] = useState(storageValue?.iconRotate || 0);
+    const [color, setColor] = useState(storageValue?.iconColor || '#fff');
+    const [icon, setIcon] = useState(storageValue?.icon || 'BiHappy');
     const [colorIcon, setColorIcon] = useState(storageValue?.colorIconFc || false);
     const { UpdateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
 
