@@ -1,6 +1,8 @@
 import { PencilRuler, Image, Shield } from 'lucide-react';
 import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
+
 const SideNav = ({ selectedIndex }) => {
     const menuList = [
         {
@@ -10,10 +12,6 @@ const SideNav = ({ selectedIndex }) => {
         {
             name: 'Phông nền',
             icon: Image,
-        },
-        {
-            name: 'Nâng cấp',
-            icon: Shield,
         },
     ];
 
@@ -40,5 +38,7 @@ const SideNav = ({ selectedIndex }) => {
         </div>
     );
 };
-
+SideNav.propTypes = {
+    selectedIndex: PropTypes.func,
+};
 export default SideNav;

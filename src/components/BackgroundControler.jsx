@@ -2,11 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Slider } from '@/components/ui/slider';
 import ColorPickerController from './ColorPickerController';
 import UpdateStorageContext from '@/Context/UpdateStorageContext';
+
 const BackgroundControler = () => {
-    const storageValue = JSON.parse(localStorage.getItem('value'));
-    const [rounded, setRounded] = useState(storageValue?.bgRounded || 0);
-    const [padding, setPadding] = useState(storageValue?.bgPadding || 0);
-    const [color, setColor] = useState(storageValue?.bgColor || '#fff');
+    const storedValue = localStorage.getItem('value');
+    const storageValue = JSON.parse(storedValue);
+    const [padding, setPadding] = useState(storageValue ? storageValue.bgPadding : 0);
+    const [rounded, setRounded] = useState(storageValue ? storageValue.bgRounded : 0);
+    const [color, setColor] = useState(storageValue ? storageValue.bgColor : '#dbdbd');
     const { UpdateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
 
     useEffect(() => {

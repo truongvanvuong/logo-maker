@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { iconColorList } from '@/constants/iconColor';
@@ -8,14 +10,14 @@ import * as FcIcons from 'react-icons/fc';
 
 const IconList = ({ selectedIcon, selectedColorIcon }) => {
     const storageValue = JSON.parse(localStorage.getItem('value'));
-    const [icon, setIcon] = useState(storageValue?.icon || 'BiHappy');
-
-    const [colorIconFC, setColorIconFC] = useState(storageValue?.colorIconFc || false);
+    const [icon, setIcon] = useState(storageValue ? storageValue.icon : 'BiHappy');
+    const [colorIconFC, setColorIconFC] = useState(storageValue ? storageValue.colorIconFc : false);
     const [openDialog, setOpenDialog] = useState(false);
 
     const Icon = ({ name, color, size, rotate, colorIcon = false }) => {
         const iconLibrary = colorIcon ? FcIcons : BiIcons;
         const IconComponent = iconLibrary[name];
+
         return (
             <div style={{ transform: `rotate(${rotate}deg)` }}>
                 <IconComponent size={size} color={color} />
@@ -40,7 +42,7 @@ const IconList = ({ selectedIcon, selectedColorIcon }) => {
                     <DialogHeader>
                         <DialogTitle>Chọn icon </DialogTitle>
                         <DialogDescription>
-                            <Tabs defaultValue="icon" className="w-[400px]">
+                            <Tabs defaultValue="icon">
                                 <TabsList>
                                     <TabsTrigger value="icon">Icons</TabsTrigger>
                                     <TabsTrigger value="color-icon">Color Icons</TabsTrigger>
@@ -90,6 +92,11 @@ const IconList = ({ selectedIcon, selectedColorIcon }) => {
             </Dialog>
         </div>
     );
+};
+
+IconList.propTypes = {
+    selectedIcon: PropTypes.func,
+    selectedColorIcon: PropTypes.func,
 };
 
 export default IconList;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import UpdateStorageContext from '@/Context/UpdateStorageContext';
 import { toPng } from 'html-to-image';
 import React, { useEffect, useState, useContext } from 'react';
@@ -49,18 +51,20 @@ const LogoPreview = ({ downloadIcon }) => {
             <div
                 className="h-[500px] w-[500px] bg-gray-200 outline-gray-300"
                 style={{
-                    padding: storageValue.bgPadding,
+                    padding: storageValue?.bgPadding || 0,
                 }}
             >
                 <div
                     id="downloadLogo"
                     className="h-full w-full flex items-center justify-center"
                     style={{
-                        borderRadius: storageValue.bgRounded,
-                        background: storageValue.bgColor,
+                        borderRadius: storageValue?.bgRounded || 0,
+                        background: storageValue?.bgColor || '#dbdbd',
                     }}
                 >
-                    {storageValue.colorIconFc ? (
+                    {storageValue === null ? (
+                        false
+                    ) : storageValue.colorIconFc ? (
                         <Icon
                             colorIcon
                             name={storageValue?.icon}
@@ -80,6 +84,9 @@ const LogoPreview = ({ downloadIcon }) => {
             </div>
         </div>
     );
+};
+LogoPreview.propTypes = {
+    downloadIcon: PropTypes.func,
 };
 
 export default LogoPreview;

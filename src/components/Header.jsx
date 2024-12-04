@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Download } from 'lucide-react';
 import logo from '../assets/logo.png';
+import PropTypes from 'prop-types';
 
 const Header = ({ downloadIcon }) => {
     return (
@@ -15,6 +16,9 @@ const Header = ({ downloadIcon }) => {
             </Button>
         </div>
     );
+};
+Header.propTypes = {
+    downloadIcon: PropTypes.func,
 };
 
 export default Header;
